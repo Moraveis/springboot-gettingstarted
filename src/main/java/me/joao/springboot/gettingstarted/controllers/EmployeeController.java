@@ -1,0 +1,25 @@
+package me.joao.springboot.gettingstarted.controllers;
+
+import me.joao.springboot.gettingstarted.dao.EmployeeDAO;
+import me.joao.springboot.gettingstarted.entity.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+public class EmployeeController {
+
+    private final EmployeeDAO employeeDAO;
+
+    @Autowired
+    public EmployeeController(EmployeeDAO employeeDAO) {
+        this.employeeDAO = employeeDAO;
+    }
+
+    @GetMapping("/employees")
+    public List<Employee> findAll() {
+        return employeeDAO.findAll();
+    }
+}
