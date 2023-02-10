@@ -29,4 +29,26 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
         return employees;
     }
+
+    @Override
+    public Employee findById(int id) {
+        Session session = entityManager.unwrap(Session.class);
+        Employee employee = session.get(Employee.class, id);
+
+        return employee;
+    }
+
+    @Override
+    public void save(Employee employee) {
+        Session session = entityManager.unwrap(Session.class);
+        session.saveOrUpdate(employee);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        Session session = entityManager.unwrap(Session.class);
+        Query deleteQuery = session.createQuery("delete from Employee where id=:employeeId");
+        deleteQuery.setParameter("employeeId", id);
+        deleteQuery.executeUpdate();
+    }
 }
