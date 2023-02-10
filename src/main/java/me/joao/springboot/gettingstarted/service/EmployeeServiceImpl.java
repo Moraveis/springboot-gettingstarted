@@ -1,7 +1,7 @@
 package me.joao.springboot.gettingstarted.service;
 
-import me.joao.springboot.gettingstarted.dao.EmployeeDAO;
 import me.joao.springboot.gettingstarted.entity.Employee;
+import me.joao.springboot.gettingstarted.repository.EmployeeJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeDAO employeeRepository;
+    private final EmployeeJpaRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeDAO employeeRepository) {
+    public EmployeeServiceImpl(EmployeeJpaRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -25,13 +25,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public Employee findById(int id) {
-        return employeeRepository.findById(id);
+        return employeeRepository.findById(id).get();
     }
 
     @Override
     @Transactional
-    public void save(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     @Override

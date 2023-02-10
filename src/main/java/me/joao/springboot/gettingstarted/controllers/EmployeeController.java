@@ -1,6 +1,5 @@
 package me.joao.springboot.gettingstarted.controllers;
 
-import me.joao.springboot.gettingstarted.dao.EmployeeDAO;
 import me.joao.springboot.gettingstarted.entity.Employee;
 import me.joao.springboot.gettingstarted.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
